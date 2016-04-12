@@ -16,7 +16,7 @@ public class Quicksort {
 		int i, j, v, temp;
 		i = x;
 		j = y;
-		v = tablica[(x + y) / 2];
+		v = tablica[x];
 		do {
 			while (tablica[i] < v) {
 				i++;
@@ -31,7 +31,7 @@ public class Quicksort {
 				i++;
 				j--;
 			}
-//			numOfIterations++;
+			numOfIterations++;
 		} while (i <= j);
 		if (x < j)
 			quicksort(tablica, x, j);
@@ -51,42 +51,48 @@ public class Quicksort {
 			long startTime = System.nanoTime();
 			quicksort(values, 0, numberOfElements - 1);
 			long stopTime = System.nanoTime();
+			long startTime2 = System.nanoTime();
+			quicksort(values, 0, numberOfElements - 1);
+			long stopTime2 = System.nanoTime();
 			long elapsedTime = (stopTime - startTime);
+			long elapsedTime2 = (stopTime2 - startTime2);
+			System.out.println("elapsedTime  " + elapsedTime);
+			System.out.println("elapsedTime2 " + elapsedTime2);
 			if (j != 0) {
 				Quicksort.elapsedTime.put(elapsedTime, numOfIterations);
 				list1.add(j);
 				list2.add(numOfIterations);
 				list3.add(elapsedTime);
 			}
-//			numOfIterations = 0;
+			numOfIterations = 0;
 		}
-//		for (Integer numOfIterations : list2) {
-//			System.out.println(numOfIterations);
-//		}
+		for (Integer numOfIterations : list2) {
+			System.out.println(numOfIterations);
+		}
 		long avgTime = 0;
 		for (Long elapsedTime : list3) {
-//			System.out.println(elapsedTime);
+			System.out.println(elapsedTime);
 			avgTime+=elapsedTime;
 		}
 		
 		System.out.println(avgTime/(list3.size()));
-//		Long maximumTime = new Long(Long.MIN_VALUE);
-//		Long minimumTime = new Long(Long.MAX_VALUE);
-//		Long mediumTime = new Long(0);
-//		Long mediumIterations = new Long(0);
-//		for (Long key : elapsedTime.keySet()) {
-//			mediumTime += key;
-//			mediumIterations += elapsedTime.get(key);
-//			if (key >= maximumTime) {
-//				maximumTime = key;
-//			}
-//			if (key <= minimumTime) {
-//				minimumTime = key;
-//			}
-//		}
-//		System.out.println("\nWorst case: " + maximumTime + " ns -> " + elapsedTime.get(maximumTime) + " iterations");
-//		System.out.println("\nBest case: " + minimumTime + " ns -> " + elapsedTime.get(minimumTime) + " iterations");
-//		System.out.println("\nAverage time = " + mediumTime / elapsedTime.size() + "ns\nAverage number of iterations = "
-//				+ mediumIterations / elapsedTime.size());
+		Long maximumTime = new Long(Long.MIN_VALUE);
+		Long minimumTime = new Long(Long.MAX_VALUE);
+		Long mediumTime = new Long(0);
+		Long mediumIterations = new Long(0);
+		for (Long key : elapsedTime.keySet()) {
+			mediumTime += key;
+			mediumIterations += elapsedTime.get(key);
+			if (key >= maximumTime) {
+				maximumTime = key;
+			}
+			if (key <= minimumTime) {
+				minimumTime = key;
+			}
+		}
+		System.out.println("\nWorst case: " + maximumTime + " ns -> " + elapsedTime.get(maximumTime) + " iterations");
+		System.out.println("\nBest case: " + minimumTime + " ns -> " + elapsedTime.get(minimumTime) + " iterations");
+		System.out.println("\nAverage time = " + mediumTime / elapsedTime.size() + "ns\nAverage number of iterations = "
+				+ mediumIterations / elapsedTime.size());
 	}
 }
