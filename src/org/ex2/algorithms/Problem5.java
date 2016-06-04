@@ -34,7 +34,7 @@ public class Problem5 {
 				execSumOfTime += listOfJobs[i];
 			}
 
-		} else if (NUMBER_OF_PROCESSORS > 0 && NUMBER_OF_JOBS == 1) {
+		} else if (NUMBER_OF_PROCESSORS > 0 /*&& NUMBER_OF_JOBS == 1*/) {
 			System.out.println("Case: MULTIPLE PROCESSORS: " + NUMBER_OF_PROCESSORS + " | Jobs: " + NUMBER_OF_JOBS);
 			execSumOfTime += listOfJobs[0]*NUMBER_OF_PROCESSORS;
 		} else if (NUMBER_OF_JOBS < NUMBER_OF_PROCESSORS) {
